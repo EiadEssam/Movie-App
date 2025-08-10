@@ -1,0 +1,52 @@
+﻿@{
+    ViewData["Title"] = "Movie App Home";
+}
+
+<div class="container mt-5">
+    <div class="jumbotron bg-dark text-white p-5 rounded-3 shadow">
+        <h1 class="display-4">🎬 Welcome to Movie App!</h1>
+        <p class="lead">Your ultimate movie collection and management system</p>
+        <hr class="my-4 bg-light">
+        <p>Browse, add, and manage your favorite movies with ease.</p>
+        <a class="btn btn-primary btn-lg" asp-controller="Movies" asp-action="Index" role="button">
+            <i class="bi bi-film"></i> View Movie Collection
+        </a>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title"><i class="bi bi-collection-play"></i> Browse Movies</h5>
+                    <p class="card-text">Explore our extensive collection of films from various genres and eras.</p>
+                    <a asp-controller="Movies" asp-action="Index" class="btn btn-outline-primary">Browse Now</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title"><i class="bi bi-plus-circle"></i> Add New Movies</h5>
+                    <p class="card-text">Contribute to our collection by adding your favorite movies.</p>
+                    <a asp-controller="Movies" asp-action="Create" class="btn btn-outline-success">Add Movie</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title"><i class="bi bi-info-circle"></i> About This App</h5>
+                    <p class="card-text">Learn more about The application, its purpose, and the features.</p>
+                    <a asp-controller="Home" asp-action="about" class="btn btn-outline-info">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="alert alert-info mt-4">
+        <h4><i class="bi bi-star-fill"></i> Featured Movies</h4>
+        <p>Check out our highest rated movies this week!</p>
+    </div>
+</div>

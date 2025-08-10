@@ -1,0 +1,108 @@
+@model MvcMovie.Models.Movie
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<!-- Bootstrap Icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+<h1>Create</h1>
+
+<h4>Movie</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Title" class="control-label">
+                    @Html.DisplayNameFor(model => model.Title)
+                    <i class="bi bi-info-circle text-info ms-1" 
+                    data-bs-toggle="tooltip" 
+                    data-bs-placement="right" 
+                    title="@Html.DisplayDescriptionFor(model => model.Title)"></i>
+                </label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Rating" class="control-label">
+                    @Html.DisplayNameFor(model => model.Rating)
+                    <i class="bi bi-info-circle text-info ms-1" 
+                    data-bs-toggle="tooltip" 
+                    data-bs-placement="right" 
+                    title="@Html.DisplayDescriptionFor(model => model.Rating)"></i>
+                </label>
+                <input asp-for="Rating" class="form-control" type="number" step="0.5" min="0" max="5" />
+                <span asp-validation-for="Rating" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="ReleaseDate" class="control-label"></label>
+                <input asp-for="ReleaseDate" class="form-control" type="date" />
+                <span asp-validation-for="ReleaseDate" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Genre" class="control-label">
+                    @Html.DisplayNameFor(model => model.Genre)
+                    <i class="bi bi-info-circle text-info ms-1" 
+                    data-bs-toggle="tooltip" 
+                    data-bs-placement="right" 
+                    title="@Html.DisplayDescriptionFor(model => model.Genre)"></i>
+                </label>
+                <input asp-for="Genre" class="form-control" />
+                <span asp-validation-for="Genre" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Price" class="control-label">
+                    @Html.DisplayNameFor(model => model.Price)
+                    <i class="bi bi-info-circle text-info ms-1" 
+                    data-bs-toggle="tooltip" 
+                    data-bs-placement="right" 
+                    title="@Html.DisplayDescriptionFor(model => model.Price)"></i>
+                </label>
+                <div class="input-group">
+                    <input asp-for="Price" class="form-control" />
+                    <span class="input-group-text">M</span>
+                </div>
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+
+            <div class="d-flex gap-2">
+                <input type="submit" value="Create" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        function setStars(rating) {
+            document.querySelector('input[name="Rating"]').value = rating;
+            document.querySelectorAll('#starRating .star').forEach(s => {
+                let value = s.getAttribute('data-value');
+                s.classList.remove('bi-star', 'bi-star-fill');
+                s.classList.add(value <= rating ? 'bi-star-fill' : 'bi-star');
+            });
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            let initialRating = parseInt(document.querySelector('input[name="Rating"]').value) || 0;
+            setStars(initialRating);
+
+            document.querySelectorAll('#starRating .star').forEach(star => {
+                star.addEventListener('click', function () {
+                    setStars(parseInt(this.getAttribute('data-value')));
+                });
+            });
+        });
+    </script>
+}
+
